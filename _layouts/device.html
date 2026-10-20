@@ -5,30 +5,28 @@ layout: default
 <div class="max-w-5xl mx-auto">
   
   <!-- Device Hero Card -->
-  <div class="bg-zinc-900 border border-white/10 rounded-2xl p-8 mb-10 relative overflow-hidden group shadow-2xl">
+  <div class="bg-surface border border-fg/15 rounded-2xl p-8 mb-10 relative overflow-hidden group shadow-2xl">
     <!-- Background Glow Effect -->
-    <div class="absolute -right-20 -top-20 w-80 h-80 bg-pbrp-red/10 rounded-full blur-3xl group-hover:bg-pbrp-red/20 transition-all duration-700 pointer-events-none"></div>
-    
     <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
       <div>
         <div class="flex flex-wrap items-center gap-3 mb-3">
-          <span class="px-3 py-1 rounded text-xs font-bold tracking-wider bg-white/5 border border-white/10 text-gray-400 uppercase">
+          <span class="px-3 py-1 rounded text-xs font-bold tracking-wider bg-fg/5 border border-fg/15 text-muted uppercase">
             {{ page.oem }}
           </span>
           {% if page.supportstatus == 'Official' or page.supportstatus == 'Current' %}
-            <span class="px-3 py-1 rounded text-xs font-bold tracking-wider bg-green-500/10 border border-green-500/20 text-green-400 uppercase">
+            <span class="px-3 py-1 rounded text-xs font-bold tracking-wider bg-fg text-bg border border-fg uppercase">
               Official
             </span>
           {% else %}
-            <span class="px-3 py-1 rounded text-xs font-bold tracking-wider bg-orange-500/10 border border-orange-500/20 text-orange-400 uppercase">
+            <span class="px-3 py-1 rounded text-xs font-bold tracking-wider bg-fg/5 border border-fg/25 text-fg uppercase">
               {{ page.supportstatus }}
             </span>
           {% endif %}
         </div>
         
-        <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-2">{{ page.title }}</h1>
+        <h1 class="text-4xl md:text-5xl font-display font-bold text-fg mb-2">{{ page.title }}</h1>
         
-        <div class="flex items-center gap-2 text-pbrp-red font-mono text-lg">
+        <div class="flex items-center gap-2 text-fg font-mono text-lg">
           <i class="fas fa-fingerprint"></i>
           <span>{{ page.codename }}</span>
         </div>
@@ -38,27 +36,27 @@ layout: default
       <div class="flex flex-col items-start md:items-end gap-4">
         <div class="flex items-center gap-3">
             <div class="text-right hidden md:block">
-                <p class="text-xs text-gray-500 uppercase tracking-wider">Maintainer</p>
-                <p class="text-white font-medium">{{ page.maintainer }}</p>
+                <p class="text-xs text-muted uppercase tracking-wider">Maintainer</p>
+                <p class="text-fg font-medium">{{ page.maintainer }}</p>
             </div>
-            <div class="h-10 w-10 rounded-full bg-gradient-to-br from-pbrp-red to-pbrp-purple flex items-center justify-center text-white font-bold text-lg shadow-lg">
+            <div class="h-10 w-10 rounded-full bg-fg text-bg flex items-center justify-center text-fg font-bold text-lg shadow-lg">
                 {{ page.maintainer | slice: 0 | upcase }}
             </div>
             <!-- Mobile Maintainer Label -->
             <div class="md:hidden">
-                <p class="text-xs text-gray-500 uppercase tracking-wider">Maintainer</p>
-                <p class="text-white font-medium">{{ page.maintainer }}</p>
+                <p class="text-xs text-muted uppercase tracking-wider">Maintainer</p>
+                <p class="text-fg font-medium">{{ page.maintainer }}</p>
             </div>
         </div>
 
         <div class="flex gap-2">
             {% if page.devicetree %}
-            <a href="{{ page.devicetree }}" target="_blank" class="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-colors text-white text-sm font-medium flex items-center gap-2 no-underline">
+            <a href="{{ page.devicetree }}" target="_blank" class="px-4 py-2 rounded-lg bg-fg/5 hover:bg-fg/10 border border-fg/15 transition-colors text-fg text-sm font-medium flex items-center gap-2 no-underline">
             <i class="fab fa-github"></i> <span class="hidden sm:inline">Device Tree</span>
             </a>
             {% endif %}
             {% if page.xdathread %}
-            <a href="{{ page.xdathread }}" target="_blank" class="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-colors text-white text-sm font-medium flex items-center gap-2 no-underline">
+            <a href="{{ page.xdathread }}" target="_blank" class="px-4 py-2 rounded-lg bg-fg/5 hover:bg-fg/10 border border-fg/15 transition-colors text-fg text-sm font-medium flex items-center gap-2 no-underline">
             <i class="fas fa-comments"></i> <span class="hidden sm:inline">XDA</span>
             </a>
             {% endif %}

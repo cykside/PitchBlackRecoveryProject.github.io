@@ -1,11 +1,11 @@
 {% capture fastboot %}fastboot{% if page.fastbootvendor %} -i 0x{{ page.fastbootvendor }}{% endif %}{% endcapture %}
-<div class="bg-zinc-900 border border-white/10 rounded-xl p-6 mb-6 shadow-lg not-prose">
-  <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center gap-2 border-b border-white/5 pb-2">
-    <i class="fas fa-terminal text-pbrp-red"></i> Fastboot Install
+<div class="bg-surface border border-fg/15 rounded-xl p-6 mb-6 shadow-lg not-prose">
+  <h3 class="text-xl font-display font-bold text-fg mb-4 flex items-center gap-2 border-b border-fg/10 pb-2">
+    <i class="fas fa-terminal text-fg"></i> Fastboot Install
   </h3>
 
-  <div class="bg-blue-500/10 border-l-4 border-blue-500 p-3 mb-6 rounded-r">
-    <p class="text-blue-200 text-xs">
+  <div class="bg-fg/5 border-l-4 border-fg p-3 mb-6 rounded-r">
+    <p class="text-fg text-xs">
       <strong>Requirement:</strong> Bootloader must be unlocked. PC with ADB/Fastboot drivers required.
     </p>
   </div>
@@ -13,35 +13,35 @@
   <div class="space-y-6">
     <!-- Step 1 -->
     <div>
-      <h4 class="text-white font-bold text-sm mb-2">1. Enter Bootloader Mode</h4>
-      <p class="text-gray-400 text-sm mb-2">Reboot your device into bootloader/fastboot mode:</p>
-      <div class="bg-black/50 border border-white/10 rounded p-3 font-mono text-sm text-red-400">
+      <h4 class="text-fg font-bold text-sm mb-2">1. Enter Bootloader Mode</h4>
+      <p class="text-muted text-sm mb-2">Reboot your device into bootloader/fastboot mode:</p>
+      <div class="codebox">
         adb reboot bootloader
       </div>
     </div>
 
     <!-- Step 2 -->
     <div>
-      <h4 class="text-white font-bold text-sm mb-2">2. Install Recovery</h4>
-      <p class="text-gray-400 text-sm mb-2"><strong>Preferred:</strong> Temporarily boot the image:</p>
-      <div class="bg-black/50 border border-white/10 rounded p-3 font-mono text-sm text-red-400 mb-2">
+      <h4 class="text-fg font-bold text-sm mb-2">2. Install Recovery</h4>
+      <p class="text-muted text-sm mb-2"><strong>Preferred:</strong> Temporarily boot the image:</p>
+      <div class="codebox">
         {{ fastboot }} boot pbrp.img
       </div>
-      <p class="text-gray-500 text-xs mb-2">Once booted, flash the PBRP zip file from the Install menu to make it permanent.</p>
+      <p class="text-muted text-xs mb-2">Once booted, flash the PBRP zip file from the Install menu to make it permanent.</p>
       
-      <div class="my-4 border-t border-white/5"></div>
+      <div class="my-4 border-t border-fg/10"></div>
 
-      <p class="text-gray-400 text-sm mb-2"><strong>Alternative:</strong> Flash directly (A-only devices):</p>
-      <div class="bg-black/50 border border-white/10 rounded p-3 font-mono text-sm text-red-400">
+      <p class="text-muted text-sm mb-2"><strong>Alternative:</strong> Flash directly (A-only devices):</p>
+      <div class="codebox">
         {{ fastboot }} flash recovery pbrp.img
       </div>
     </div>
 
     <!-- Step 3 -->
     <div>
-      <h4 class="text-white font-bold text-sm mb-2">3. Reboot</h4>
-      <p class="text-gray-400 text-sm mb-2">Important: Hold the <strong>Volume Up + Power</strong> buttons immediately after rebooting to prevent stock recovery restoration.</p>
-      <div class="bg-black/50 border border-white/10 rounded p-3 font-mono text-sm text-red-400">
+      <h4 class="text-fg font-bold text-sm mb-2">3. Reboot</h4>
+      <p class="text-muted text-sm mb-2">Important: Hold the <strong>Volume Up + Power</strong> buttons immediately after rebooting to prevent stock recovery restoration.</p>
+      <div class="codebox">
         {{ fastboot }} reboot
       </div>
     </div>

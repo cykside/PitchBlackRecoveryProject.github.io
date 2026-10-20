@@ -1,196 +1,165 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ page.title | default: site.title }}</title>
-  <link rel="icon" type="image/png" href="/assets/images/Gradient-Red-Logo-1.png">
-  
-  <!-- Fonts -->
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" href="/assets/images/logo-bw.png">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('pb-theme')||'dark'}catch(e){}</script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
-  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Orbitron', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-          colors: {
-            pbrp: {
-              red: '#d32f2f',
-              purple: '#9400D3',
-              dark: '#000000',
-              card: '#121212',
-              border: '#27272a'
-            }
-          },
-          backgroundImage: {
-            'gradient-primary': 'linear-gradient(135deg, #d32f2f 0%, #9400D3 100%)',
-          }
-        }
-      }
-    }
+    const c = v => `rgb(var(--${v}) / <alpha-value>)`;
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter','sans-serif'], display: ['Orbitron','sans-serif'], mono: ['JetBrains Mono','monospace'] },
+      colors: { bg: c('bg'), surface: c('surface'), fg: c('fg'), muted: c('muted'),
+                pbrp: { red: c('fg'), purple: c('fg'), dark: c('bg'), card: c('surface'), border: c('fg') } }
+    } } }
   </script>
 
   <style>
-    body { background-color: #000000; color: #e4e4e7; }
-    
-    .text-gradient {
-      background: linear-gradient(135deg, #d32f2f, #9400D3);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .glass-nav {
-      background: rgba(5, 5, 5, 0.9); /* Slightly darker for better readability */
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
+    :root, [data-theme="dark"]  { --bg:0 0 0;       --surface:12 12 12;   --fg:255 255 255; --muted:161 161 161; color-scheme:dark; }
+    [data-theme="light"]        { --bg:255 255 255; --surface:244 244 244; --fg:0 0 0;       --muted:88 88 88;    color-scheme:light; }
+    html { scroll-behavior:smooth; scroll-padding-top:6rem; }
+    body { background:rgb(var(--bg)); color:rgb(var(--fg) / .85); transition:background-color .25s, color .25s; }
+    ::selection { background:rgb(var(--fg)); color:rgb(var(--bg)); }
+    :focus-visible { outline:2px solid rgb(var(--fg)); outline-offset:3px; border-radius:6px; }
+    ::-webkit-scrollbar { width:10px; } ::-webkit-scrollbar-thumb { background:rgb(var(--fg)/.25); border-radius:10px; }
+    @media (prefers-reduced-motion:reduce){ *,*::before,*::after{ animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
 
-    /* Markdown Styling */
-    .prose h1, .prose h2, .prose h3 { font-family: 'Orbitron', sans-serif; color: white; margin-top: 1.5em; margin-bottom: 0.5em; font-weight: 700; }
-    .prose p, .prose ul, .prose ol { color: #d4d4d8; margin-bottom: 1em; line-height: 1.6; }
-    .prose a { color: #d32f2f; transition: 0.2s; }
-    .prose a:hover { color: #ef4444; text-decoration: underline; }
-    .prose code { background: #18181b; padding: 0.2em 0.4em; border-radius: 0.3em; font-family: 'JetBrains Mono', monospace; color: #fca5a5; font-size: 0.85em; border: 1px solid #27272a; }
-    .prose pre { background: #121212; padding: 1em; border-radius: 0.5em; overflow-x: auto; border: 1px solid #27272a; margin-bottom: 1em; }
-    .prose pre code { background: transparent; padding: 0; color: #e4e4e7; border: none; }
-    .page-heading { @apply text-2xl font-display font-bold text-white border-l-4 border-pbrp-red pl-4 my-6; }
+    .text-gradient { background:linear-gradient(180deg, rgb(var(--fg)) 30%, rgb(var(--muted))); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+    .hero-grid { background-image:linear-gradient(rgb(var(--fg)/.06) 1px,transparent 1px),linear-gradient(90deg,rgb(var(--fg)/.06) 1px,transparent 1px); background-size:48px 48px; -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%); mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%); }
+    .glass-nav { background:rgb(var(--bg)/.85); backdrop-filter:blur(14px); border-bottom:1px solid rgb(var(--fg)/.12); }
+    .logo-mark { transition:filter .25s; } [data-theme="light"] .logo-mark { filter:invert(1); }
+    .nav-link { position:relative; font-size:.9rem; color:rgb(var(--muted)); transition:color .2s; }
+    .nav-link:hover, .nav-link[aria-current="page"] { color:rgb(var(--fg)); }
+    .nav-link::after { content:""; position:absolute; left:0; bottom:-6px; height:1px; width:100%; background:rgb(var(--fg)); transform:scaleX(0); transform-origin:left; transition:transform .25s; }
+    .nav-link:hover::after, .nav-link[aria-current="page"]::after { transform:scaleX(1); }
+
+    .codebox { position:relative; background:rgb(var(--bg)); border:1px solid rgb(var(--fg)/.18); border-radius:.5rem; padding:.75rem 3rem .75rem 1rem; font:500 .85rem 'JetBrains Mono',monospace; color:rgb(var(--fg)); overflow-x:auto; margin-bottom:.5rem; }
+    .copy-btn { position:absolute; top:.4rem; right:.4rem; width:2rem; height:2rem; border-radius:.4rem; color:rgb(var(--muted)); border:1px solid transparent; transition:.2s; }
+    .copy-btn:hover { color:rgb(var(--fg)); border-color:rgb(var(--fg)/.25); background:rgb(var(--fg)/.06); }
+
+    .prose h1,.prose h2,.prose h3 { font-family:'Orbitron',sans-serif; color:rgb(var(--fg)); margin:1.5em 0 .5em; font-weight:700; }
+    .prose p,.prose ul,.prose ol { color:rgb(var(--fg)/.8); margin-bottom:1em; line-height:1.7; }
+    .prose a { color:rgb(var(--fg)); text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgb(var(--fg)/.4); }
+    .prose a:hover { text-decoration-color:rgb(var(--fg)); }
+    .prose code { background:rgb(var(--fg)/.08); padding:.15em .4em; border-radius:.3em; font:.85em 'JetBrains Mono',monospace; }
+    .prose pre { background:rgb(var(--surface)); padding:1em; border-radius:.5rem; overflow-x:auto; border:1px solid rgb(var(--fg)/.15); margin-bottom:1em; }
+
+    #toast { position:fixed; left:50%; bottom:1.5rem; transform:translate(-50%,2rem); opacity:0; pointer-events:none; z-index:100; background:rgb(var(--fg)); color:rgb(var(--bg)); padding:.75rem 1.25rem; border-radius:999px; font-size:.875rem; font-weight:600; transition:.3s; max-width:90vw; text-align:center; }
+    #toast.show { opacity:1; transform:translate(-50%,0); }
   </style>
 </head>
-<body class="flex flex-col min-h-screen antialiased selection:bg-pbrp-red/30 selection:text-white">
+<body class="flex flex-col min-h-screen antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-fg focus:text-bg font-semibold">Skip to content</a>
 
-  <!-- Navbar -->
-  <nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-300" id="navbar">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        
-        <!-- Logo -->
-        <a href="{{ '/' | relative_url }}" class="flex items-center gap-3 group">
-          <img class="h-10 w-10 transition-transform group-hover:scale-110" src="/assets/images/Gradient-Red-Logo-1.png" alt="PBRP">
-          <span class="font-display font-bold text-lg md:text-xl tracking-wider text-gradient">PitchBlack Recovery Project</span>
-        </a>
+  <nav class="fixed top-0 w-full z-50 glass-nav" aria-label="Main">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <a href="{{ '/' | relative_url }}" class="flex items-center gap-3 group" aria-label="PitchBlack Recovery Project home">
+        <img class="logo-mark h-9 w-9 transition-transform group-hover:scale-110" src="/assets/images/logo-mark.png" alt="">
+        <span class="font-display font-bold tracking-wider text-fg text-sm md:text-base">PitchBlack <span class="text-muted font-medium hidden sm:inline">Recovery Project</span></span>
+      </a>
 
-        <!-- Desktop Menu -->
-        <div class="hidden lg:block">
-          <div class="ml-10 flex items-baseline space-x-8">
-            <a href="{{ '/' | relative_url }}#home" class="text-gray-300 hover:text-white transition-colors">Home</a>
-            <a href="{{ '/' | relative_url }}#about" class="text-gray-300 hover:text-white transition-colors">About</a>
-            <a href="{{ '/' | relative_url }}#devices" class="text-gray-300 hover:text-white transition-colors">Devices</a>
-            <a href="/docs/" class="text-gray-300 hover:text-white transition-colors">Docs</a>
-            <a href="{{ '/' | relative_url }}#donate" class="text-pbrp-red hover:text-white font-bold transition-colors">Donate</a>
-            <a href="{{ '/' | relative_url }}#faq" class="text-gray-300 hover:text-white transition-colors">FAQ</a>
-          </div>
+      <div class="flex items-center gap-2">
+        <div class="hidden lg:flex items-center gap-8 mr-4">
+          <a href="{{ '/' | relative_url }}#about" class="nav-link">About</a>
+          <a href="{{ '/' | relative_url }}#devices" class="nav-link">Devices</a>
+          <a href="/docs/" class="nav-link" {% if page.url contains '/docs' or page.url contains '/official' %}aria-current="page"{% endif %}>Docs</a>
+          <a href="{{ '/' | relative_url }}#faq" class="nav-link">FAQ</a>
+          <a href="{{ '/' | relative_url }}#donate" class="px-4 py-1.5 rounded-full border border-fg/40 text-fg text-sm font-semibold hover:bg-fg hover:text-bg transition-colors">Donate</a>
         </div>
-
-        <!-- Mobile Menu Button -->
-        <div class="-mr-2 flex lg:hidden">
-          <button type="button" id="mobile-menu-btn" class="p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/10 transition-colors">
-            <i class="fas fa-bars text-xl"></i>
-          </button>
-        </div>
+        <button type="button" id="theme-toggle" class="h-10 w-10 rounded-lg text-muted hover:text-fg hover:bg-fg/10 transition-colors" aria-label="Toggle light/dark theme"><i class="fas fa-sun"></i></button>
+        <button type="button" id="mobile-menu-btn" class="lg:hidden h-10 w-10 rounded-lg text-muted hover:text-fg hover:bg-fg/10 transition-colors" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><i class="fas fa-bars text-lg"></i></button>
       </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div class="hidden lg:hidden bg-black/95 backdrop-blur-xl border-b border-white/10 absolute w-full left-0" id="mobile-menu">
-      <div class="px-4 pt-2 pb-4 space-y-2">
-        <a href="{{ '/' | relative_url }}" class="text-gray-300 hover:text-white block px-3 py-3 rounded-lg hover:bg-white/5 transition-colors">Home</a>
-        <a href="{{ '/' | relative_url }}#devices" class="text-gray-300 hover:text-white block px-3 py-3 rounded-lg hover:bg-white/5 transition-colors">Devices</a>
-        <a href="/docs/" class="text-gray-300 hover:text-white block px-3 py-3 rounded-lg hover:bg-white/5 transition-colors">Docs</a>
-        <a href="{{ '/' | relative_url }}#donate" class="text-pbrp-red font-bold hover:text-white block px-3 py-3 rounded-lg hover:bg-white/5 transition-colors">Donate</a>
+    <div class="hidden lg:hidden bg-bg border-b border-fg/15 absolute w-full left-0" id="mobile-menu">
+      <div class="px-4 py-3 space-y-1">
+        {% assign links = "Home|/|About|/#about|Devices|/#devices|Docs|/docs/|FAQ|/#faq|Donate|/#donate" | split: "|" %}
+        {% for i in (0..5) %}{% assign n = i | times: 2 %}{% assign m = n | plus: 1 %}
+        <a href="{{ links[m] }}" class="block px-3 py-3 rounded-lg text-fg/80 hover:text-fg hover:bg-fg/10 transition-colors">{{ links[n] }}</a>
+        {% endfor %}
       </div>
     </div>
   </nav>
 
-  <!-- Main Content -->
-  <main class="flex-grow pt-24 pb-12 px-4 sm:px-6 lg:px-8 w-full max-w-7xl mx-auto" onclick="closeMobileMenu()">
+  <main id="main" class="flex-grow pt-24 pb-12 px-4 sm:px-6 lg:px-8 w-full max-w-7xl mx-auto" onclick="closeMobileMenu()">
     {{ content }}
   </main>
 
-  <!-- Footer -->
-  <footer class="border-t border-white/10 bg-zinc-900/50 py-12 mt-auto">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
-      <div class="flex space-x-8 mb-6">
-        <a href="https://github.com/PitchBlackRecoveryProject" class="text-gray-500 hover:text-white text-2xl transition-all hover:scale-110">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://t.me/pbrpcom" class="text-gray-500 hover:text-blue-400 text-2xl transition-all hover:scale-110">
-          <i class="fab fa-telegram"></i>
-        </a>
+  <footer class="border-t border-fg/15 bg-surface py-10 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-5">
+      <div class="flex items-center gap-6 text-xl text-muted">
+        <a href="https://github.com/PitchBlackRecoveryProject" class="hover:text-fg transition-colors" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://t.me/pbrpcom" class="hover:text-fg transition-colors" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://sourceforge.net/projects/pbrp/" class="hover:text-fg transition-colors" aria-label="SourceForge"><i class="fas fa-download"></i></a>
       </div>
-      <p class="text-center text-gray-500 text-sm">
-        &copy; 2018 - {{ site.time | date: '%Y' }} <span class="text-gray-300 font-bold">PitchBlack Recovery Project</span>.
-        <br>Maintained with <i class="fas fa-heart text-pbrp-red mx-1"></i> by the community.
-      </p>
+      <p class="text-center text-muted text-sm leading-relaxed">&copy; 2018 – {{ site.time | date: '%Y' }} <span class="text-fg font-semibold">PitchBlack Recovery Project</span><br>Maintained by the community.</p>
     </div>
   </footer>
 
+  <div id="toast" role="status" aria-live="polite"></div>
+
   <script>
-    // --- Mobile Menu Logic ---
-    const btn = document.getElementById('mobile-menu-btn');
-    const menu = document.getElementById('mobile-menu');
-    const icon = btn.querySelector('i');
+    const root = document.documentElement;
+    // Theme
+    const tbtn = document.getElementById('theme-toggle');
+    const syncTheme = () => tbtn.innerHTML = `<i class="fas fa-${root.dataset.theme === 'dark' ? 'sun' : 'moon'}"></i>`;
+    syncTheme();
+    tbtn.addEventListener('click', () => {
+      root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem('pb-theme', root.dataset.theme); } catch (e) {}
+      syncTheme();
+    });
 
-    function toggleMenu() {
-      const isHidden = menu.classList.contains('hidden');
-      if (isHidden) {
-        menu.classList.remove('hidden');
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
-      } else {
-        closeMobileMenu();
-      }
-    }
-
+    // Mobile menu
+    const btn = document.getElementById('mobile-menu-btn'), menu = document.getElementById('mobile-menu');
     function closeMobileMenu() {
-      if (!menu.classList.contains('hidden')) {
-        menu.classList.add('hidden');
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-      }
+      if (menu.classList.contains('hidden')) return;
+      menu.classList.add('hidden'); btn.setAttribute('aria-expanded', 'false');
+      btn.innerHTML = '<i class="fas fa-bars text-lg"></i>';
     }
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      if (menu.classList.toggle('hidden')) return closeMobileMenu();
+      btn.setAttribute('aria-expanded', 'true'); btn.innerHTML = '<i class="fas fa-times text-lg"></i>';
+    });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
+    let lastY = scrollY; addEventListener('scroll', () => { if (Math.abs(scrollY - lastY) > 10) { closeMobileMenu(); lastY = scrollY; } }, { passive: true });
 
-    // Toggle on button click
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevent triggering close on body click
-      toggleMenu();
+    // Toast
+    let toastTimer;
+    window.toast = msg => { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2600); };
+
+    // Copy buttons on code boxes
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.codebox').forEach(box => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'copy-btn'; b.setAttribute('aria-label', 'Copy to clipboard'); b.innerHTML = '<i class="far fa-copy"></i>';
+        b.onclick = () => navigator.clipboard.writeText(box.innerText.trim()).then(() => { b.innerHTML = '<i class="fas fa-check"></i>'; toast('Copied'); setTimeout(() => b.innerHTML = '<i class="far fa-copy"></i>', 1500); });
+        box.appendChild(b);
+      });
+      // aria-expanded for accordions
+      document.addEventListener('click', e => {
+        const t = e.target.closest('.faq-question, .oem-toggle'); if (!t) return;
+        setTimeout(() => t.setAttribute('aria-expanded', String(!t.nextElementSibling.classList.contains('hidden'))), 0);
+      });
+      // "/" focuses device search
+      const s = document.getElementById('device-search');
+      if (s) document.addEventListener('keydown', e => {
+        if (e.key === '/' && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) { e.preventDefault(); s.focus(); s.scrollIntoView({ block: 'center' }); }
+      });
     });
 
-    // Close when clicking ANY link inside menu
-    menu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMobileMenu);
-    });
-
-    // Close on Scroll
-    let lastScrollY = window.scrollY;
-    window.addEventListener('scroll', () => {
-      if (Math.abs(window.scrollY - lastScrollY) > 10) { // Small threshold
-        closeMobileMenu();
-        lastScrollY = window.scrollY;
-      }
-    });
-
-    // --- Redirect Logic ---
-    (function() {
-      const hash = window.location.hash;
-      if (hash === '#downloads') {
-        window.location.replace(window.location.pathname + '#devices');
-        return;
-      }
-    })();
+    if (location.hash === '#downloads') location.replace(location.pathname + '#devices');
   </script>
 </body>
 </html>

@@ -1,20 +1,20 @@
-<div class="bg-zinc-900 border border-white/10 rounded-xl p-6 mb-6 shadow-lg not-prose">
-  <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center gap-2 border-b border-white/5 pb-2">
-    <i class="fas fa-box-open text-pbrp-red"></i> Legacy A/B Install
+<div class="bg-surface border border-fg/15 rounded-xl p-6 mb-6 shadow-lg not-prose">
+  <h3 class="text-xl font-display font-bold text-fg mb-4 flex items-center gap-2 border-b border-fg/10 pb-2">
+    <i class="fas fa-box-open text-fg"></i> Legacy A/B Install
   </h3>
 
-  <ol class="list-decimal pl-5 space-y-4 text-gray-300 text-sm marker:text-pbrp-red marker:font-bold">
+  <ol class="list-decimal pl-5 space-y-4 text-fg/80 text-sm marker:text-fg marker:font-bold">
     <li>
       <p class="mb-2">Temporarily boot PBRP image:</p>
-      <div class="bg-black/50 border border-white/10 rounded p-2 font-mono text-xs text-red-400">fastboot boot pbrp.img</div>
+      <div class="codebox">fastboot boot pbrp.img</div>
     </li>
     <li>
       <p class="mb-2">Push the installer zip to device:</p>
-      <div class="bg-black/50 border border-white/10 rounded p-2 font-mono text-xs text-red-400">adb push pbrp.zip /</div>
+      <div class="codebox">adb push pbrp.zip /</div>
     </li>
     <li>
       <p>On the device, go to <strong>Install</strong>, select the zip, and swipe to flash.</p>
-      <p class="text-gray-500 text-xs mt-1">This installs PBRP to both slots.</p>
+      <p class="text-muted text-xs mt-1">This installs PBRP to both slots.</p>
     </li>
   </ol>
 </div>

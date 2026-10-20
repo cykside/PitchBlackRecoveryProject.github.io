@@ -1,29 +1,29 @@
-<div class="bg-zinc-900 border border-white/10 rounded-xl p-6 mb-6 shadow-lg not-prose">
-  <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center gap-2 border-b border-white/5 pb-2">
-    <i class="fas fa-columns text-pbrp-red"></i> Fastboot Install (A/B)
+<div class="bg-surface border border-fg/15 rounded-xl p-6 mb-6 shadow-lg not-prose">
+  <h3 class="text-xl font-display font-bold text-fg mb-4 flex items-center gap-2 border-b border-fg/10 pb-2">
+    <i class="fas fa-columns text-fg"></i> Fastboot Install (A/B)
   </h3>
 
-  <div class="bg-orange-500/10 border-l-4 border-orange-500 p-3 mb-6 rounded-r">
-    <p class="text-orange-200 text-xs">
+  <div class="bg-fg/5 border-l-4 border-fg p-3 mb-6 rounded-r">
+    <p class="text-fg text-xs">
       <strong>Caution:</strong> Do not use `fastboot flash recovery` on A/B devices unless instructed. Always boot first.
     </p>
   </div>
 
-  <ol class="list-decimal pl-5 space-y-4 text-gray-300 text-sm marker:text-pbrp-red marker:font-bold">
+  <ol class="list-decimal pl-5 space-y-4 text-fg/80 text-sm marker:text-fg marker:font-bold">
     <li>
       <p class="mb-2">Reboot to bootloader:</p>
-      <div class="bg-black/50 border border-white/10 rounded p-2 font-mono text-xs text-red-400">adb reboot bootloader</div>
+      <div class="codebox">adb reboot bootloader</div>
     </li>
     <li>
       <p class="mb-2">Temporarily boot PBRP:</p>
-      <div class="bg-black/50 border border-white/10 rounded p-2 font-mono text-xs text-red-400">fastboot boot pbrp.img</div>
+      <div class="codebox">fastboot boot pbrp.img</div>
     </li>
     <li>
       <p>Once PBRP boots, copy the <strong>PBRP zip</strong> to device.</p>
     </li>
     <li>
       <p>Go to <strong>Install</strong> > Select Zip > Swipe to Flash.</p>
-      <p class="text-gray-500 text-xs mt-1">This will automatically patch both slots.</p>
+      <p class="text-muted text-xs mt-1">This will automatically patch both slots.</p>
     </li>
   </ol>
 </div>

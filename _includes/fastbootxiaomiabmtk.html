@@ -1,32 +1,32 @@
-<div class="bg-zinc-900 border border-white/10 rounded-xl p-6 mb-6 shadow-lg not-prose">
-  <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center gap-2 border-b border-white/5 pb-2">
-    <i class="fas fa-bolt text-pbrp-red"></i> Fastboot Install (Boot Partition)
+<div class="bg-surface border border-fg/15 rounded-xl p-6 mb-6 shadow-lg not-prose">
+  <h3 class="text-xl font-display font-bold text-fg mb-4 flex items-center gap-2 border-b border-fg/10 pb-2">
+    <i class="fas fa-bolt text-fg"></i> Fastboot Install (Boot Partition)
   </h3>
 
-  <div class="bg-orange-500/10 border-l-4 border-orange-500 p-3 mb-6 rounded-r">
-    <p class="text-orange-200 text-xs">
+  <div class="bg-fg/5 border-l-4 border-fg p-3 mb-6 rounded-r">
+    <p class="text-fg text-xs">
       <strong>Warning:</strong> Flashing to the boot partition on the wrong device can cause a bootloop. Ensure your device uses "Recovery in Boot".
     </p>
   </div>
 
   <div class="space-y-4">
     <div>
-      <p class="text-gray-400 text-sm mb-2">1. Reboot to Bootloader:</p>
-      <div class="bg-black/50 border border-white/10 rounded p-3 font-mono text-sm text-red-400">
+      <p class="text-muted text-sm mb-2">1. Reboot to Bootloader:</p>
+      <div class="codebox">
         adb reboot bootloader
       </div>
     </div>
 
     <div>
-      <p class="text-gray-400 text-sm mb-2">2. Flash Recovery to <strong>Boot</strong> partition:</p>
-      <div class="bg-black/50 border border-white/10 rounded p-3 font-mono text-sm text-red-400">
+      <p class="text-muted text-sm mb-2">2. Flash Recovery to <strong>Boot</strong> partition:</p>
+      <div class="codebox">
         fastboot flash boot pbrp.img
       </div>
     </div>
     
     <div>
-      <p class="text-gray-400 text-sm mb-2">3. Reboot to Recovery:</p>
-      <div class="bg-black/50 border border-white/10 rounded p-3 font-mono text-sm text-red-400">
+      <p class="text-muted text-sm mb-2">3. Reboot to Recovery:</p>
+      <div class="codebox">
         fastboot reboot recovery
       </div>
     </div>

@@ -1,26 +1,26 @@
 {% capture fastboot %}fastboot{% if page.fastbootvendor %} -i 0x{{ page.fastbootvendor }}{% endif %}{% endcapture %}
-<div class="bg-zinc-900 border border-white/10 rounded-xl p-6 mb-6 shadow-lg not-prose">
-  <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center gap-2 border-b border-white/5 pb-2">
-    <i class="fas fa-bolt text-pbrp-red"></i> Fastboot Install (Recovery Partition)
+<div class="bg-surface border border-fg/15 rounded-xl p-6 mb-6 shadow-lg not-prose">
+  <h3 class="text-xl font-display font-bold text-fg mb-4 flex items-center gap-2 border-b border-fg/10 pb-2">
+    <i class="fas fa-bolt text-fg"></i> Fastboot Install (Recovery Partition)
   </h3>
 
   <div class="space-y-4">
     <div>
-      <p class="text-gray-400 text-sm mb-2">1. Enter Bootloader:</p>
-      <div class="bg-black/50 border border-white/10 rounded p-3 font-mono text-sm text-red-400">
+      <p class="text-muted text-sm mb-2">1. Enter Bootloader:</p>
+      <div class="codebox">
         adb reboot bootloader
       </div>
     </div>
 
     <div>
-      <p class="text-gray-400 text-sm mb-2">2. Flash Recovery:</p>
-      <div class="bg-black/50 border border-white/10 rounded p-3 font-mono text-sm text-red-400">
+      <p class="text-muted text-sm mb-2">2. Flash Recovery:</p>
+      <div class="codebox">
         {{ fastboot }} flash recovery pbrp.img
       </div>
     </div>
     
-    <div class="bg-yellow-500/10 p-3 rounded border border-yellow-500/20">
-      <p class="text-yellow-200 text-xs">
+    <div class="bg-fg/5 p-3 rounded border border-fg/25">
+      <p class="text-fg text-xs">
         <strong>Tip:</strong> Reboot to recovery immediately after flashing to prevent stock ROM from overwriting PBRP.
       </p>
     </div>

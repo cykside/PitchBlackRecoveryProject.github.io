@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ page.title | default: site.title }}</title>
   <meta name="theme-color" content="#000000">
-  <link rel="icon" type="image/png" href="/assets/images/logo-bw.png">
+  <link rel="icon" type="image/png" href="{{ '/assets/images/logo-bw.png' | relative_url }}">
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('pb-theme')||'dark'}catch(e){}</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,8 +33,9 @@
     ::-webkit-scrollbar { width:10px; } ::-webkit-scrollbar-thumb { background:rgb(var(--fg)/.25); border-radius:10px; }
     @media (prefers-reduced-motion:reduce){ *,*::before,*::after{ animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
 
-    .text-gradient { background:linear-gradient(180deg, rgb(var(--fg)) 30%, rgb(var(--muted))); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
-    .hero-grid { background-image:linear-gradient(rgb(var(--fg)/.06) 1px,transparent 1px),linear-gradient(90deg,rgb(var(--fg)/.06) 1px,transparent 1px); background-size:48px 48px; -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%); mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%); }
+    .text-gradient { color:rgb(var(--fg)); }
+    .hero-grid { isolation:isolate; }
+    .hero-grid::before { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; background-image:linear-gradient(rgb(var(--fg)/.07) 1px,transparent 1px),linear-gradient(90deg,rgb(var(--fg)/.07) 1px,transparent 1px); background-size:48px 48px; -webkit-mask-image:radial-gradient(ellipse at center,#000 25%,transparent 72%); mask-image:radial-gradient(ellipse at center,#000 25%,transparent 72%); }
     .glass-nav { background:rgb(var(--bg)/.85); backdrop-filter:blur(14px); border-bottom:1px solid rgb(var(--fg)/.12); }
     .logo-mark { transition:filter .25s; } [data-theme="light"] .logo-mark { filter:invert(1); }
     .nav-link { position:relative; font-size:.9rem; color:rgb(var(--muted)); transition:color .2s; }
@@ -63,7 +64,7 @@
   <nav class="fixed top-0 w-full z-50 glass-nav" aria-label="Main">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
       <a href="{{ '/' | relative_url }}" class="flex items-center gap-3 group" aria-label="PitchBlack Recovery Project home">
-        <img class="logo-mark h-9 w-9 transition-transform group-hover:scale-110" src="/assets/images/logo-mark.png" alt="">
+        <img class="logo-mark h-9 w-9 transition-transform group-hover:scale-110" src="{{ '/assets/images/logo-mark.png' | relative_url }}" alt="">
         <span class="font-display font-bold tracking-wider text-fg text-sm md:text-base">PitchBlack <span class="text-muted font-medium hidden sm:inline">Recovery Project</span></span>
       </a>
 
@@ -71,7 +72,7 @@
         <div class="hidden lg:flex items-center gap-8 mr-4">
           <a href="{{ '/' | relative_url }}#about" class="nav-link">About</a>
           <a href="{{ '/' | relative_url }}#devices" class="nav-link">Devices</a>
-          <a href="/docs/" class="nav-link" {% if page.url contains '/docs' or page.url contains '/official' %}aria-current="page"{% endif %}>Docs</a>
+          <a href="{{ '/docs/' | relative_url }}" class="nav-link" {% if page.url contains '/docs' or page.url contains '/official' %}aria-current="page"{% endif %}>Docs</a>
           <a href="{{ '/' | relative_url }}#faq" class="nav-link">FAQ</a>
           <a href="{{ '/' | relative_url }}#donate" class="px-4 py-1.5 rounded-full border border-fg/40 text-fg text-sm font-semibold hover:bg-fg hover:text-bg transition-colors">Donate</a>
         </div>
@@ -84,7 +85,7 @@
       <div class="px-4 py-3 space-y-1">
         {% assign links = "Home|/|About|/#about|Devices|/#devices|Docs|/docs/|FAQ|/#faq|Donate|/#donate" | split: "|" %}
         {% for i in (0..5) %}{% assign n = i | times: 2 %}{% assign m = n | plus: 1 %}
-        <a href="{{ links[m] }}" class="block px-3 py-3 rounded-lg text-fg/80 hover:text-fg hover:bg-fg/10 transition-colors">{{ links[n] }}</a>
+        <a href="{{ links[m] | relative_url }}" class="block px-3 py-3 rounded-lg text-fg/80 hover:text-fg hover:bg-fg/10 transition-colors">{{ links[n] }}</a>
         {% endfor %}
       </div>
     </div>

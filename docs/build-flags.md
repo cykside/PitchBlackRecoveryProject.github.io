@@ -7,7 +7,7 @@ permalink: /docs/build-flags/
 <div class="max-w-4xl mx-auto py-12 px-4">
   
   <div class="mb-10">
-    <a href="/docs/" class="text-sm text-muted hover:text-fg mb-4 inline-block transition-colors"><i class="fas fa-arrow-left mr-2"></i> Back to Docs</a>
+    <a href="{{ '/docs/' | relative_url }}" class="text-sm text-muted hover:text-fg mb-4 inline-block transition-colors"><i class="fas fa-arrow-left mr-2"></i> Back to Docs</a>
     <h1 class="text-4xl font-display font-bold text-fg mb-4 border-l-4 border-fg pl-4">Build Flags</h1>
     <p class="text-muted text-lg">Custom flags to configure PBRP for your specific device tree in <code class="text-fg bg-fg/10 px-2 py-0.5 rounded text-base">BoardConfig.mk</code>.</p>
   </div>

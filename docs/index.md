@@ -28,7 +28,7 @@ permalink: /docs/
         </div>
         <h3 class="text-2xl font-bold text-fg mb-3">Official Maintainer</h3>
         <p class="text-muted mb-8 min-h-[3rem]">Learn how to become an official PBRP device maintainer and join our team.</p>
-        <a href="/official/" class="inline-flex items-center px-6 py-3 rounded-lg bg-fg text-bg font-bold hover:opacity-85 transition-colors shadow-lg ">
+        <a href="{{ '/official/' | relative_url }}" class="inline-flex items-center px-6 py-3 rounded-lg bg-fg text-bg font-bold hover:opacity-85 transition-colors shadow-lg ">
           <i class="fas fa-crown mr-2"></i> Apply Now
         </a>
       </div>
@@ -45,7 +45,7 @@ permalink: /docs/
         </div>
         <h3 class="text-2xl font-bold text-fg mb-3">Build Flags</h3>
         <p class="text-muted mb-8 min-h-[3rem]">Learn about custom PBRP build flags to use in your device tree's BoardConfig.mk.</p>
-        <a href="/docs/build-flags/" class="inline-flex items-center px-6 py-3 rounded-lg bg-fg/5 border border-fg/15 text-fg font-bold hover:bg-fg/10 transition-colors">
+        <a href="{{ '/docs/build-flags/' | relative_url }}" class="inline-flex items-center px-6 py-3 rounded-lg bg-fg/5 border border-fg/15 text-fg font-bold hover:bg-fg/10 transition-colors">
           <i class="fas fa-book mr-2"></i> View Guide
         </a>
       </div>

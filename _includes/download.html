@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const codename = '{{ page.codename }}';
   
   try {
-    const response = await fetch(`/assets/json/builds-${codename}.json`);
+    const response = await fetch(`{{ '/assets/json/' | relative_url }}builds-${codename}.json`);
     if (!response.ok) throw new Error(`${response.status}`);
     
     const data = await response.json();

@@ -6,10 +6,10 @@ title: "PitchBlack Recovery Project"
 {% assign oem_groups = site.oem | group_by: "oem" | sort: "name" %}
 
 <!-- HERO -->
-<section id="home" class="grid lg:grid-cols-12 gap-12 items-center py-10 lg:py-24">
+<section id="home" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center py-10 lg:py-24">
   <div class="lg:col-span-7">
-    <p class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted border border-fg/20 rounded-full px-3 py-1 mb-6"><span class="h-1.5 w-1.5 rounded-full bg-fg"></span> Open source · TWRP 3.7.1 base</p>
-    <h1 class="font-display font-black text-fg text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight">The recovery built for people who flash.</h1>
+    <p class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-muted border border-fg/20 rounded-full px-3 py-1 mb-6"><span class="h-1.5 w-1.5 rounded-full bg-fg"></span> Open source · TWRP 3.7.1 base</p>
+    <h1 class="font-display font-black text-fg text-3xl sm:text-5xl lg:text-6xl leading-[1.1] break-words tracking-tight">The recovery built for people who flash.</h1>
     <p class="mt-6 text-lg text-muted max-w-xl leading-relaxed">PBRP is the most advanced open-source Android recovery. Back up, restore, flash and troubleshoot your device on the go.</p>
     <div class="mt-8 flex flex-wrap gap-3">
       <a href="#devices" class="btn btn-primary"><i class="fas fa-download"></i> Download</a>
@@ -43,7 +43,7 @@ title: "PitchBlack Recovery Project"
     <h2 class="font-display font-bold text-fg text-3xl">Why PBRP</h2>
     <p class="text-muted max-w-xl">Founded on 28 March 2018 by developers from many countries, to deliver the world’s most capable recovery with deep customization.</p>
   </div>
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-fg/15 border border-fg/15 rounded-2xl overflow-hidden">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-fg/15 border border-fg/15 rounded-2xl overflow-hidden">
     {% assign feats = "fa-tools|Advanced Toolbox|10+ tools for your device, including Magisk Manager integration.|fa-mobile-alt|Wide Device Support|Treble, ARB support, force encryption and much more.|fa-paint-brush|Theme Engine|Customize PBRP with the PBRP Theme Engine™.|fa-layer-group|Material Design UI|A clean, modern interface for the latest Android.|fa-sync|Latest TWRP Base|Built on TWRP 3.7.1 for modern and legacy devices.|fa-language|Multi-Language|Official support for 10+ languages, updated regularly." | split: "|" %}
     {% for i in (0..5) %}{% assign n = i | times: 3 %}{% assign t = n | plus: 1 %}{% assign d = n | plus: 2 %}
     <div class="bg-bg p-7 group hover:bg-surface transition-colors">
@@ -56,7 +56,7 @@ title: "PitchBlack Recovery Project"
 </section>
 
 <!-- REQUIREMENTS -->
-<section id="requirements" class="py-16 border-t border-fg/15 grid lg:grid-cols-12 gap-10">
+<section id="requirements" class="py-16 border-t border-fg/15 grid grid-cols-1 lg:grid-cols-12 gap-10">
   <div class="lg:col-span-4"><h2 class="font-display font-bold text-fg text-3xl mb-3">Before you start</h2><p class="text-muted">Everything you need ready on your computer and device.</p></div>
   <div class="lg:col-span-8">
     <ul class="divide-y divide-fg/15 border border-fg/15 rounded-2xl">
@@ -70,8 +70,8 @@ title: "PitchBlack Recovery Project"
 <!-- DEVICES -->
 <section id="devices" class="py-16 border-t border-fg/15">
   <div class="flex items-end justify-between gap-4 mb-6">
-    <h2 class="font-display font-bold text-fg text-3xl">Supported devices</h2>
-    <p class="text-sm text-muted font-mono"><span id="dev-count">{{ devs.size }}</span> shown</p>
+    <h2 class="font-display font-bold text-fg text-2xl sm:text-3xl">Supported devices</h2>
+    <p class="text-sm text-muted font-mono whitespace-nowrap shrink-0"><span id="dev-count">{{ devs.size }}</span> shown</p>
   </div>
   <div class="sticky top-16 z-30 -mx-4 px-4 py-3 bg-bg/90 backdrop-blur border-b border-fg/10">
     <div class="relative max-w-2xl">
@@ -83,7 +83,7 @@ title: "PitchBlack Recovery Project"
       {% for g in oem_groups %}<button class="chip capitalize" data-oem="{{ g.name }}" aria-pressed="false">{{ g.name }} <span class="opacity-60">{{ g.items.size }}</span></button>{% endfor %}
     </div>
   </div>
-  <div id="device-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-6">
+  <div id="device-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-6">
     {% for d in devs %}
     <a href="{{ d.url | relative_url }}" class="device-item group flex items-center justify-between gap-3 p-4 rounded-xl border border-fg/15 hover:border-fg hover:bg-surface transition-colors" data-oem="{{ d.oem }}" data-q="{{ d.title | downcase }} {{ d.codename | downcase }} {{ d.oem | downcase }}">
       <div class="min-w-0"><p class="text-[11px] uppercase tracking-widest text-muted capitalize">{{ d.oem }}</p><p class="font-semibold text-fg truncate">{{ d.title }}</p><p class="text-xs font-mono text-muted">{{ d.codename }}</p></div>
@@ -95,7 +95,7 @@ title: "PitchBlack Recovery Project"
 </section>
 
 <!-- COMMUNITY + DONATE -->
-<section id="donate" class="my-8 rounded-3xl bg-fg text-bg p-8 md:p-14 grid md:grid-cols-2 gap-10">
+<section id="donate" class="my-8 rounded-3xl bg-fg text-bg p-8 md:p-14 grid grid-cols-1 md:grid-cols-2 gap-10">
   <div id="community">
     <h2 class="font-display font-bold text-3xl mb-3">Join the community</h2>
     <p class="opacity-70 mb-6">Get support, updates and contribute to development.</p>
@@ -115,7 +115,7 @@ title: "PitchBlack Recovery Project"
 </section>
 
 <!-- FAQ -->
-<section id="faq" class="py-16 grid lg:grid-cols-12 gap-10">
+<section id="faq" class="py-16 grid grid-cols-1 lg:grid-cols-12 gap-10">
   <h2 class="lg:col-span-4 font-display font-bold text-fg text-3xl">FAQ</h2>
   <div class="lg:col-span-8 divide-y divide-fg/15 border-y border-fg/15">
     {% assign faq = "What is PBRP?|PitchBlack Recovery Project is a feature-rich custom recovery based on TWRP 3.7.1, with a unique black interface and improved functionality for backup, restore and system modification.|How do I install PBRP?|Methods vary by device: fastboot, Odin (Samsung) or SP Flash Tool (MediaTek). Always follow the guide on your device’s page.|Is PBRP safe?|Yes, when used correctly. Always back up first, follow the instructions carefully and verify that your device is supported.|What makes PBRP different from TWRP?|PBRP is based on TWRP 3.7.1 but adds a distinctive theme, enhanced UI and extra features, with regular updates and device-specific optimizations.|Can I contribute to PBRP?|Yes! Maintain devices, report bugs or improve the code. Visit our GitHub to get started." | split: "|" %}

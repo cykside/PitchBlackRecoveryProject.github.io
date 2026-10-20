@@ -26,6 +26,8 @@
   <style>
     :root, [data-theme="dark"]  { --bg:0 0 0;       --surface:12 12 12;   --fg:255 255 255; --muted:161 161 161; color-scheme:dark; }
     [data-theme="light"]        { --bg:255 255 255; --surface:244 244 244; --fg:0 0 0;       --muted:88 88 88;    color-scheme:light; }
+    html, body { max-width:100%; overflow-x:clip; }
+    .grid > *, main > * { min-width:0; }
     html { scroll-behavior:smooth; scroll-padding-top:6rem; }
     body { background:rgb(var(--bg)); color:rgb(var(--fg) / .85); transition:background-color .25s, color .25s; }
     ::selection { background:rgb(var(--fg)); color:rgb(var(--bg)); }
@@ -103,7 +105,7 @@
   </main>
 
   <footer class="border-t border-fg/15 bg-surface mt-auto">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-10 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-sm">
       <div class="lg:col-span-2">
         <p class="font-display font-bold text-fg text-lg mb-3">PitchBlack Recovery Project</p>
         <p class="text-muted max-w-sm leading-relaxed">The most advanced open-source Android recovery, maintained by the community since 2018.</p>

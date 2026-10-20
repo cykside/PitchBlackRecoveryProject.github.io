@@ -1,74 +1,25 @@
 ---
 layout: default
 ---
-
+{% assign official = false %}{% if page.supportstatus == 'Official' or page.supportstatus == 'Current' %}{% assign official = true %}{% endif %}
 <div class="max-w-5xl mx-auto">
-  
-  <!-- Device Hero Card -->
-  <div class="bg-surface border border-fg/15 rounded-2xl p-8 mb-10 relative overflow-hidden group shadow-2xl">
-    <!-- Background Glow Effect -->
-    <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-      <div>
-        <div class="flex flex-wrap items-center gap-3 mb-3">
-          <span class="px-3 py-1 rounded text-xs font-bold tracking-wider bg-fg/5 border border-fg/15 text-muted uppercase">
-            {{ page.oem }}
-          </span>
-          {% if page.supportstatus == 'Official' or page.supportstatus == 'Current' %}
-            <span class="px-3 py-1 rounded text-xs font-bold tracking-wider bg-fg text-bg border border-fg uppercase">
-              Official
-            </span>
-          {% else %}
-            <span class="px-3 py-1 rounded text-xs font-bold tracking-wider bg-fg/5 border border-fg/25 text-fg uppercase">
-              {{ page.supportstatus }}
-            </span>
-          {% endif %}
-        </div>
-        
-        <h1 class="text-4xl md:text-5xl font-display font-bold text-fg mb-2">{{ page.title }}</h1>
-        
-        <div class="flex items-center gap-2 text-fg font-mono text-lg">
-          <i class="fas fa-fingerprint"></i>
-          <span>{{ page.codename }}</span>
-        </div>
+  <nav class="text-sm text-muted mb-8 flex items-center gap-2" aria-label="Breadcrumb">
+    <a href="{{ '/' | relative_url }}" class="hover:text-fg">Home</a><span>/</span><a href="{{ '/#devices' | relative_url }}" class="hover:text-fg">Devices</a><span>/</span><span class="text-fg capitalize">{{ page.codename }}</span>
+  </nav>
+
+  <header class="pb-8 border-b border-fg/15">
+    <span class="inline-block text-[11px] font-bold tracking-widest uppercase px-3 py-1 rounded-full {% if official %}bg-fg text-bg{% else %}border border-fg/40 text-fg{% endif %}">{% if official %}Official{% else %}{{ page.supportstatus }}{% endif %}</span>
+    <h1 class="mt-4 font-display font-black text-fg text-3xl md:text-5xl leading-tight">{{ page.title }}</h1>
+    <dl class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-px bg-fg/15 border border-fg/15 rounded-2xl overflow-hidden">
+      <div class="bg-bg p-4"><dt class="text-[11px] uppercase tracking-widest text-muted">Codename</dt><dd class="font-mono text-fg mt-1">{{ page.codename }}</dd></div>
+      <div class="bg-bg p-4"><dt class="text-[11px] uppercase tracking-widest text-muted">Brand</dt><dd class="text-fg mt-1 capitalize">{{ page.oem }}</dd></div>
+      <div class="bg-bg p-4"><dt class="text-[11px] uppercase tracking-widest text-muted">Maintainer</dt><dd class="text-fg mt-1">{{ page.maintainer }}</dd></div>
+      <div class="bg-bg p-4 flex items-center gap-2 flex-wrap">
+        {% if page.devicetree %}<a href="{{ page.devicetree }}" target="_blank" rel="noopener" class="btn btn-ghost !h-9 !px-3 text-sm"><i class="fab fa-github"></i> Tree</a>{% endif %}
+        {% if page.xdathread %}<a href="{{ page.xdathread }}" target="_blank" rel="noopener" class="btn btn-ghost !h-9 !px-3 text-sm"><i class="fas fa-comments"></i> XDA</a>{% endif %}
       </div>
+    </dl>
+  </header>
 
-      <!-- Maintainer & Links -->
-      <div class="flex flex-col items-start md:items-end gap-4">
-        <div class="flex items-center gap-3">
-            <div class="text-right hidden md:block">
-                <p class="text-xs text-muted uppercase tracking-wider">Maintainer</p>
-                <p class="text-fg font-medium">{{ page.maintainer }}</p>
-            </div>
-            <div class="h-10 w-10 rounded-full bg-fg text-bg flex items-center justify-center text-fg font-bold text-lg shadow-lg">
-                {{ page.maintainer | slice: 0 | upcase }}
-            </div>
-            <!-- Mobile Maintainer Label -->
-            <div class="md:hidden">
-                <p class="text-xs text-muted uppercase tracking-wider">Maintainer</p>
-                <p class="text-fg font-medium">{{ page.maintainer }}</p>
-            </div>
-        </div>
-
-        <div class="flex gap-2">
-            {% if page.devicetree %}
-            <a href="{{ page.devicetree }}" target="_blank" class="px-4 py-2 rounded-lg bg-fg/5 hover:bg-fg/10 border border-fg/15 transition-colors text-fg text-sm font-medium flex items-center gap-2 no-underline">
-            <i class="fab fa-github"></i> <span class="hidden sm:inline">Device Tree</span>
-            </a>
-            {% endif %}
-            {% if page.xdathread %}
-            <a href="{{ page.xdathread }}" target="_blank" class="px-4 py-2 rounded-lg bg-fg/5 hover:bg-fg/10 border border-fg/15 transition-colors text-fg text-sm font-medium flex items-center gap-2 no-underline">
-            <i class="fas fa-comments"></i> <span class="hidden sm:inline">XDA</span>
-            </a>
-            {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Content -->
-  <!-- 'prose' styles text, 'prose-invert' makes it light for dark mode -->
-  <div class="prose prose-invert max-w-none">
-      {{ content }}
-  </div>
-
+  <div class="prose max-w-none mt-8">{{ content }}</div>
 </div>

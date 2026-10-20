@@ -2,338 +2,143 @@
 layout: default
 title: "PitchBlack Recovery Project"
 ---
+{% assign devs = site.oem | sort: "title" %}
+{% assign oem_groups = site.oem | group_by: "oem" | sort: "name" %}
 
-<!-- Hero Section -->
-<section id="home" class="hero-grid relative min-h-[70vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden border-b border-fg/10">
-  <!-- Updated Title: 'PitchBlack' is now Gradient -->
-  <h1 class="text-4xl md:text-6xl lg:text-7xl font-display font-black text-fg mb-6 leading-tight">
-    <span class="text-gradient">PitchBlack</span> Recovery Project
-  </h1>
-  
-  <p class="text-lg md:text-xl text-muted max-w-2xl mb-10 font-light">
-    The Perfect Android Recovery for your device! PBRP provides the most advanced Open Source Android Recovery to troubleshoot your device on the GO!
-  </p>
-
-  <div class="flex flex-col sm:flex-row gap-4">
-    <a href="#devices" class="px-8 py-3 rounded-full bg-fg text-bg font-bold shadow-lg hover:scale-105 transition-transform">
-      <i class="fas fa-download mr-2"></i>Download Now
-    </a>
-    <a href="#donate" class="px-8 py-3 rounded-full bg-fg/5 border border-fg/15 text-fg font-bold hover:bg-fg/10 transition-colors">
-      <i class="fas fa-heart mr-2"></i>Donate
-    </a>
-  </div>
-</section>
-
-<!-- About Section -->
-<section id="about" class="py-20 px-4 max-w-7xl mx-auto">
-  <div class="text-center mb-16">
-    <h2 class="text-3xl font-display font-bold text-fg mb-4 text-gradient">About PBRP</h2>
-    <p class="text-muted max-w-2xl mx-auto">
-      PitchBlack Recovery Project is an Open Source organization founded on 28th March 2018 by developers from different countries with an aim to provide the world's most advanced recovery with better customization's, themes and features.
-    </p>
+<!-- HERO -->
+<section id="home" class="grid lg:grid-cols-12 gap-12 items-center py-10 lg:py-24">
+  <div class="lg:col-span-7">
+    <p class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted border border-fg/20 rounded-full px-3 py-1 mb-6"><span class="h-1.5 w-1.5 rounded-full bg-fg"></span> Open source · TWRP 3.7.1 base</p>
+    <h1 class="font-display font-black text-fg text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight">The recovery built for people who flash.</h1>
+    <p class="mt-6 text-lg text-muted max-w-xl leading-relaxed">PBRP is the most advanced open-source Android recovery. Back up, restore, flash and troubleshoot your device on the go.</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="#devices" class="btn btn-primary"><i class="fas fa-download"></i> Download</a>
+      <a href="{{ '/docs/' | relative_url }}" class="btn btn-ghost"><i class="fas fa-book"></i> Docs</a>
+    </div>
+    <dl class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-px bg-fg/15 border border-fg/15 rounded-2xl overflow-hidden">
+      {% assign stats = devs.size | append: "|Devices|" | append: oem_groups.size | append: "|Brands|10+|Tools|10+|Languages" | split: "|" %}
+      {% for i in (0..3) %}{% assign n = i | times: 2 %}{% assign m = n | plus: 1 %}
+      <div class="bg-bg p-4"><dt class="font-display font-bold text-2xl text-fg">{{ stats[n] }}</dt><dd class="text-xs text-muted uppercase tracking-wider mt-1">{{ stats[m] }}</dd></div>
+      {% endfor %}
+    </dl>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <!-- Feature Cards -->
-    <div class="p-6 rounded-xl bg-surface border border-fg/10 hover:border-fg/25 transition-colors">
-      <i class="fas fa-tools text-3xl text-fg mb-4"></i>
-      <h3 class="text-xl font-bold text-fg mb-2">Advanced Toolbox</h3>
-      <p class="text-muted text-sm">PBRP provides 10+ tools that come in handy when working with your device, including Magisk Manager integration.</p>
-    </div>
-    <div class="p-6 rounded-xl bg-surface border border-fg/10 hover:border-fg/25 transition-colors">
-      <i class="fas fa-mobile-alt text-3xl text-fg mb-4"></i>
-      <h3 class="text-xl font-bold text-fg mb-2">Wide Device Support</h3>
-      <p class="text-muted text-sm">Supports a wide range of devices with Treble, ARB Support, Force Encryption and much more.</p>
-    </div>
-    <div class="p-6 rounded-xl bg-surface border border-fg/10 hover:border-fg/25 transition-colors">
-      <i class="fas fa-paint-brush text-3xl text-fg mb-4"></i>
-      <h3 class="text-xl font-bold text-fg mb-2">Theme Support</h3>
-      <p class="text-muted text-sm">Customize PBRP according to your needs using PBRP Theme Engine™.</p>
-    </div>
-    <div class="p-6 rounded-xl bg-surface border border-fg/10 hover:border-fg/25 transition-colors">
-      <i class="fas fa-layer-group text-3xl text-fg mb-4"></i>
-      <h3 class="text-xl font-bold text-fg mb-2">Material Design UI</h3>
-      <p class="text-muted text-sm">Best in class material design interface for the latest Android experience.</p>
-    </div>
-    <div class="p-6 rounded-xl bg-surface border border-fg/10 hover:border-fg/25 transition-colors">
-      <i class="fas fa-sync text-3xl text-fg mb-4"></i>
-      <h3 class="text-xl font-bold text-fg mb-2">Latest TWRP Base</h3>
-      <p class="text-muted text-sm">Based on TWRP 3.7.1 with support for both modern and legacy devices.</p>
-    </div>
-    <div class="p-6 rounded-xl bg-surface border border-fg/10 hover:border-fg/25 transition-colors">
-      <i class="fas fa-language text-3xl text-fg mb-4"></i>
-      <h3 class="text-xl font-bold text-fg mb-2">Multi-Language</h3>
-      <p class="text-muted text-sm">Official support for 10+ languages that are updated and improved regularly!</p>
-    </div>
-  </div>
-</section>
-
-<!-- Requirements Section -->
-<section id="requirements" class="py-20 bg-surface/60 border-y border-fg/10">
-  <div class="max-w-4xl mx-auto px-4">
-    <h2 class="text-3xl text-center font-display font-bold text-fg mb-10 text-gradient">Installation Requirements</h2>
-    
-    <div class="bg-bg border border-fg/15 rounded-xl p-8">
-      <ul class="space-y-4">
-        <li class="flex items-center gap-4 text-fg/80">
-          <i class="fas fa-unlock-alt text-fg text-xl w-6 text-center"></i>
-          <span>Unlocked bootloader (device-specific process)</span>
-        </li>
-        <li class="flex items-center gap-4 text-fg/80">
-          <i class="fas fa-bug text-fg text-xl w-6 text-center"></i>
-          <span>USB debugging enabled</span>
-        </li>
-        <li class="flex items-center gap-4 text-fg/80">
-          <i class="fas fa-terminal text-fg text-xl w-6 text-center"></i>
-          <span>ADB and Fastboot tools installed on your computer</span>
-        </li>
-        <li class="flex items-center gap-4 text-fg/80">
-          <i class="fas fa-usb text-fg text-xl w-6 text-center"></i>
-          <span>Proper USB drivers for your device</span>
-        </li>
-        <li class="flex items-center gap-4 text-fg/80">
-          <i class="fas fa-save text-fg text-xl w-6 text-center"></i>
-          <span>A complete backup of your important data</span>
-        </li>
-      </ul>
-      
-      <div class="mt-8 bg-fg/5 border-l-4 border-fg p-4 rounded-r-lg">
-        <p class="text-fg text-sm">
-          <strong>Warning:</strong> Installing a custom recovery may void your warranty. Always follow device-specific guides.
-        </p>
+  <div class="lg:col-span-5">
+    <div class="border border-fg/20 rounded-2xl bg-surface overflow-hidden">
+      <div class="flex items-center gap-2 px-4 py-3 border-b border-fg/15">
+        <span class="h-3 w-3 rounded-full border border-fg/40"></span><span class="h-3 w-3 rounded-full border border-fg/40"></span><span class="h-3 w-3 rounded-full border border-fg/40"></span>
+        <span class="ml-2 text-xs font-mono text-muted">~/pbrp</span>
       </div>
+      <div class="codebox !border-0 !rounded-none !mb-0 !bg-transparent !p-5 !pr-12 leading-8">
+<span class="text-muted">$</span> adb reboot bootloader<br><span class="text-muted">$</span> fastboot boot pbrp.img<br><span class="text-muted">$</span> fastboot reboot
+      </div>
+      <p class="px-5 pb-5 text-xs text-muted">Boot the image, then flash the PBRP zip from Install to make it permanent.</p>
     </div>
   </div>
 </section>
 
-<!-- Devices Section -->
-<section id="devices" class="py-20 px-4 max-w-5xl mx-auto">
-  <div class="text-center mb-12">
-    <h2 class="text-3xl font-display font-bold text-fg mb-4 text-gradient">Supported Devices</h2>
-    
-    <!-- Search -->
-    <div class="relative max-w-xl mx-auto mt-8">
-      <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-muted"></i>
-      <input type="text" id="device-search" aria-label="Search devices" autocomplete="off" onkeyup="filterDevices()" 
-        class="w-full bg-surface text-fg pl-12 pr-4 py-4 rounded-xl border border-fg/15 focus:outline-none focus:border-fg transition-colors" 
-        placeholder="Search devices or codenames…  (press / to focus)">
-    </div>
+<!-- ABOUT -->
+<section id="about" class="py-16 border-t border-fg/15">
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+    <h2 class="font-display font-bold text-fg text-3xl">Why PBRP</h2>
+    <p class="text-muted max-w-xl">Founded on 28 March 2018 by developers from many countries, to deliver the world’s most capable recovery with deep customization.</p>
   </div>
-
-  <!-- Device List -->
-  <div class="space-y-3" id="device-list">
-    {% assign oem_groups = site.oem | group_by:"oem" %}
-    {% for group in oem_groups %}
-    <div class="oem-section border border-fg/15 rounded-xl bg-surface overflow-hidden">
-      <button class="w-full px-6 py-4 flex items-center justify-between hover:bg-fg/5 transition-colors oem-toggle" 
-              onclick="toggleOem(this)">
-        <span class="font-bold text-lg text-fg capitalize flex items-center gap-3">
-          {{ group.name }}
-          <span class="text-xs bg-fg/10 px-2 py-0.5 rounded text-muted font-normal">{{ group.items.size }}</span>
-        </span>
-        <i class="fas fa-chevron-down text-muted transition-transform duration-300"></i>
-      </button>
-      
-      <div class="device-list hidden bg-bg/50 p-2 border-t border-fg/15 grid grid-cols-1 md:grid-cols-2 gap-2">
-        {% for device in group.items %}
-        <a href="{{ device.url | relative_url }}" 
-           class="device-item flex items-center justify-between p-3 rounded hover:bg-fg/10 transition-colors"
-           data-title="{{ device.title | downcase }}" 
-           data-codename="{{ device.codename | downcase }}">
-           <div>
-             <div class="text-fg font-medium">{{ device.title }}</div>
-             <div class="text-xs text-muted font-mono">{{ device.codename }}</div>
-           </div>
-           <i class="fas fa-chevron-right text-muted/70 text-sm"></i>
-        </a>
-        {% endfor %}
-      </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-fg/15 border border-fg/15 rounded-2xl overflow-hidden">
+    {% assign feats = "fa-tools|Advanced Toolbox|10+ tools for your device, including Magisk Manager integration.|fa-mobile-alt|Wide Device Support|Treble, ARB support, force encryption and much more.|fa-paint-brush|Theme Engine|Customize PBRP with the PBRP Theme Engine™.|fa-layer-group|Material Design UI|A clean, modern interface for the latest Android.|fa-sync|Latest TWRP Base|Built on TWRP 3.7.1 for modern and legacy devices.|fa-language|Multi-Language|Official support for 10+ languages, updated regularly." | split: "|" %}
+    {% for i in (0..5) %}{% assign n = i | times: 3 %}{% assign t = n | plus: 1 %}{% assign d = n | plus: 2 %}
+    <div class="bg-bg p-7 group hover:bg-surface transition-colors">
+      <div class="flex items-center justify-between mb-8"><i class="fas {{ feats[n] }} text-xl text-fg"></i><span class="font-mono text-xs text-muted">0{{ forloop.index }}</span></div>
+      <h3 class="font-bold text-fg text-lg mb-2">{{ feats[t] }}</h3>
+      <p class="text-sm text-muted leading-relaxed">{{ feats[d] }}</p>
     </div>
     {% endfor %}
   </div>
-  
-  <div id="no-results" class="hidden text-center py-8 text-muted">No devices found.</div>
 </section>
 
-<!-- Community -->
-<section id="community" class="py-20 bg-surface/60">
-  <div class="max-w-4xl mx-auto px-4 text-center">
-    <h2 class="text-3xl font-display font-bold text-fg mb-10 text-gradient">Join Our Community</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <a href="https://t.me/pbrpcom" target="_blank" class="p-8 rounded-2xl bg-bg border border-fg/15 hover:border-fg/25 group transition-all">
-        <i class="fab fa-telegram text-5xl text-fg mb-4 group-hover:scale-110 transition-transform"></i>
-        <h3 class="text-xl font-bold text-fg mb-2">Telegram</h3>
-        <p class="text-muted">Join our active Telegram community for support and updates</p>
-      </a>
-      <a href="https://github.com/PitchBlackRecoveryProject" target="_blank" class="p-8 rounded-2xl bg-bg border border-fg/15 hover:border-fg/50 group transition-all">
-        <i class="fab fa-github text-5xl text-fg mb-4 group-hover:scale-110 transition-transform"></i>
-        <h3 class="text-xl font-bold text-fg mb-2">GitHub</h3>
-        <p class="text-muted">Contribute to development and report issues</p>
-      </a>
-    </div>
+<!-- REQUIREMENTS -->
+<section id="requirements" class="py-16 border-t border-fg/15 grid lg:grid-cols-12 gap-10">
+  <div class="lg:col-span-4"><h2 class="font-display font-bold text-fg text-3xl mb-3">Before you start</h2><p class="text-muted">Everything you need ready on your computer and device.</p></div>
+  <div class="lg:col-span-8">
+    <ul class="divide-y divide-fg/15 border border-fg/15 rounded-2xl">
+      {% assign reqs = "Unlocked bootloader (device-specific process)|USB debugging enabled|ADB and Fastboot installed on your computer|Proper USB drivers for your device|A complete backup of your important data" | split: "|" %}
+      {% for r in reqs %}<li class="flex items-center gap-4 p-4 text-fg/85"><i class="far fa-circle-check text-fg"></i>{{ r }}</li>{% endfor %}
+    </ul>
+    <p class="mt-4 flex gap-3 text-sm text-muted border border-dashed border-fg/30 rounded-xl p-4"><i class="fas fa-triangle-exclamation mt-0.5 text-fg"></i><span><strong class="text-fg">Warning:</strong> installing a custom recovery may void your warranty. Always follow the device-specific guide.</span></p>
   </div>
 </section>
 
-<!-- Donate -->
-<section id="donate" class="py-20 px-4">
-  <div class="max-w-3xl mx-auto text-center p-10 rounded-3xl bg-surface border border-fg/15 shadow-2xl">
-    <h2 class="text-3xl font-display font-bold text-fg mb-4">Support PBRP</h2>
-    <p class="text-xl text-fg font-bold mb-6">YOUR DONATION MATTERS A LOT TO US!</p>
-    <p class="text-muted mb-8">We are a group of people giving our valuable time to this self-less service only for YOU. We need your Support to keep PBRP alive!</p>
-    
-    <div class="flex flex-col sm:flex-row justify-center gap-4">
-      <a href="https://www.patreon.com/pitchblackrecovery" target="_blank" class="px-6 py-3 rounded-full bg-fg text-bg font-bold hover:opacity-85 transition-colors">
-        <i class="fab fa-patreon mr-2"></i> Patreon
-      </a>
-      <a href="https://opencollective.com/pitchblackrecovery" target="_blank" class="px-6 py-3 rounded-full bg-fg/10 border border-fg/30 text-fg font-bold hover:bg-fg/15 transition-colors">
-        <i class="fas fa-hand-holding-heart mr-2"></i> Open Collective
-      </a>
+<!-- DEVICES -->
+<section id="devices" class="py-16 border-t border-fg/15">
+  <div class="flex items-end justify-between gap-4 mb-6">
+    <h2 class="font-display font-bold text-fg text-3xl">Supported devices</h2>
+    <p class="text-sm text-muted font-mono"><span id="dev-count">{{ devs.size }}</span> shown</p>
+  </div>
+  <div class="sticky top-16 z-30 -mx-4 px-4 py-3 bg-bg/90 backdrop-blur border-b border-fg/10">
+    <div class="relative max-w-2xl">
+      <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-muted"></i>
+      <input type="search" id="device-search" aria-label="Search devices" autocomplete="off" placeholder="Search device or codename…  ( / )" class="w-full bg-surface text-fg pl-11 pr-4 py-3 rounded-xl border border-fg/20 focus:border-fg outline-none placeholder:text-muted">
+    </div>
+    <div id="chips" class="flex gap-2 mt-3 overflow-x-auto pb-1">
+      <button class="chip" data-oem="" aria-pressed="true">All</button>
+      {% for g in oem_groups %}<button class="chip capitalize" data-oem="{{ g.name }}" aria-pressed="false">{{ g.name }} <span class="opacity-60">{{ g.items.size }}</span></button>{% endfor %}
+    </div>
+  </div>
+  <div id="device-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-6">
+    {% for d in devs %}
+    <a href="{{ d.url | relative_url }}" class="device-item group flex items-center justify-between gap-3 p-4 rounded-xl border border-fg/15 hover:border-fg hover:bg-surface transition-colors" data-oem="{{ d.oem }}" data-q="{{ d.title | downcase }} {{ d.codename | downcase }} {{ d.oem | downcase }}">
+      <div class="min-w-0"><p class="text-[11px] uppercase tracking-widest text-muted capitalize">{{ d.oem }}</p><p class="font-semibold text-fg truncate">{{ d.title }}</p><p class="text-xs font-mono text-muted">{{ d.codename }}</p></div>
+      <i class="fas fa-arrow-right -rotate-45 text-muted group-hover:text-fg group-hover:rotate-0 transition-transform"></i>
+    </a>
+    {% endfor %}
+  </div>
+  <p id="no-results" class="hidden text-center py-12 text-muted">No devices found. Try another name or codename.</p>
+</section>
+
+<!-- COMMUNITY + DONATE -->
+<section id="donate" class="my-8 rounded-3xl bg-fg text-bg p-8 md:p-14 grid md:grid-cols-2 gap-10">
+  <div id="community">
+    <h2 class="font-display font-bold text-3xl mb-3">Join the community</h2>
+    <p class="opacity-70 mb-6">Get support, updates and contribute to development.</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="https://t.me/pbrpcom" target="_blank" rel="noopener" class="btn border border-bg/40 !text-bg hover:bg-bg/10"><i class="fab fa-telegram"></i> Telegram</a>
+      <a href="https://github.com/PitchBlackRecoveryProject" target="_blank" rel="noopener" class="btn border border-bg/40 !text-bg hover:bg-bg/10"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+  </div>
+  <div>
+    <h2 class="font-display font-bold text-3xl mb-3">Support PBRP</h2>
+    <p class="opacity-70 mb-6">A small team gives its time for free. Your donation keeps PBRP alive.</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="https://www.patreon.com/pitchblackrecovery" target="_blank" rel="noopener" class="btn bg-bg !text-fg hover:opacity-85"><i class="fab fa-patreon"></i> Patreon</a>
+      <a href="https://opencollective.com/pitchblackrecovery" target="_blank" rel="noopener" class="btn border border-bg/40 !text-bg hover:bg-bg/10"><i class="fas fa-hand-holding-heart"></i> Open Collective</a>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq" class="py-20 bg-surface/40">
-  <div class="max-w-3xl mx-auto px-4">
-    <h2 class="text-3xl text-center font-display font-bold text-fg mb-10 text-gradient">FAQ</h2>
-    
-    <div class="space-y-4">
-      <!-- FAQ Item 1 -->
-      <div class="faq-item border border-fg/15 rounded-xl bg-bg overflow-hidden">
-        <button class="faq-question w-full text-left px-6 py-4 font-bold text-fg flex justify-between items-center hover:bg-fg/5 transition-colors" onclick="toggleFaq(this)">
-          What is PBRP?
-          <i class="fas fa-plus text-fg transition-transform duration-300"></i>
-        </button>
-        <div class="faq-answer hidden px-6 py-4 text-muted border-t border-fg/10 text-sm leading-relaxed">
-          PitchBlack Recovery Project is a feature-rich custom recovery, based on TWRP 3.7.1, designed to offer a unique black-themed interface and improved functionality. It provides tools for backup, restore, and system modification operations.
-        </div>
-      </div>
-
-      <!-- FAQ Item 2 -->
-      <div class="faq-item border border-fg/15 rounded-xl bg-bg overflow-hidden">
-        <button class="faq-question w-full text-left px-6 py-4 font-bold text-fg flex justify-between items-center hover:bg-fg/5 transition-colors" onclick="toggleFaq(this)">
-          How do I install PBRP?
-          <i class="fas fa-plus text-fg transition-transform duration-300"></i>
-        </button>
-        <div class="faq-answer hidden px-6 py-4 text-muted border-t border-fg/10 text-sm leading-relaxed">
-          Installation methods vary by device. Common methods include fastboot, Odin (Samsung devices), or SP Flash Tool (MediaTek devices). Always follow the device-specific installation guide available on your device's download page.
-        </div>
-      </div>
-
-      <!-- FAQ Item 3 -->
-      <div class="faq-item border border-fg/15 rounded-xl bg-bg overflow-hidden">
-        <button class="faq-question w-full text-left px-6 py-4 font-bold text-fg flex justify-between items-center hover:bg-fg/5 transition-colors" onclick="toggleFaq(this)">
-          Is PBRP safe?
-          <i class="fas fa-plus text-fg transition-transform duration-300"></i>
-        </button>
-        <div class="faq-answer hidden px-6 py-4 text-muted border-t border-fg/10 text-sm leading-relaxed">
-          Yes, PBRP is safe when used correctly. We recommend always creating a backup before making system modifications. Follow installation instructions carefully and verify your device is supported.
-        </div>
-      </div>
-
-      <!-- FAQ Item 4 -->
-      <div class="faq-item border border-fg/15 rounded-xl bg-bg overflow-hidden">
-        <button class="faq-question w-full text-left px-6 py-4 font-bold text-fg flex justify-between items-center hover:bg-fg/5 transition-colors" onclick="toggleFaq(this)">
-          What makes PBRP different from TWRP?
-          <i class="fas fa-plus text-fg transition-transform duration-300"></i>
-        </button>
-        <div class="faq-answer hidden px-6 py-4 text-muted border-t border-fg/10 text-sm leading-relaxed">
-          While based on TWRP 3.7.1, PBRP offers a distinctive dark theme, enhanced UI elements, and additional features. We focus on regular updates, device-specific optimizations, and user-friendly interface improvements.
-        </div>
-      </div>
-
-      <!-- FAQ Item 5 -->
-      <div class="faq-item border border-fg/15 rounded-xl bg-bg overflow-hidden">
-        <button class="faq-question w-full text-left px-6 py-4 font-bold text-fg flex justify-between items-center hover:bg-fg/5 transition-colors" onclick="toggleFaq(this)">
-          Can I contribute to PBRP?
-          <i class="fas fa-plus text-fg transition-transform duration-300"></i>
-        </button>
-        <div class="faq-answer hidden px-6 py-4 text-muted border-t border-fg/10 text-sm leading-relaxed">
-          Yes! You can contribute by maintaining devices, reporting bugs, or improving our code. Visit our GitHub repository to get started. We welcome contributions from developers around the world.
-        </div>
-      </div>
-    </div>
+<section id="faq" class="py-16 grid lg:grid-cols-12 gap-10">
+  <h2 class="lg:col-span-4 font-display font-bold text-fg text-3xl">FAQ</h2>
+  <div class="lg:col-span-8 divide-y divide-fg/15 border-y border-fg/15">
+    {% assign faq = "What is PBRP?|PitchBlack Recovery Project is a feature-rich custom recovery based on TWRP 3.7.1, with a unique black interface and improved functionality for backup, restore and system modification.|How do I install PBRP?|Methods vary by device: fastboot, Odin (Samsung) or SP Flash Tool (MediaTek). Always follow the guide on your device’s page.|Is PBRP safe?|Yes, when used correctly. Always back up first, follow the instructions carefully and verify that your device is supported.|What makes PBRP different from TWRP?|PBRP is based on TWRP 3.7.1 but adds a distinctive theme, enhanced UI and extra features, with regular updates and device-specific optimizations.|Can I contribute to PBRP?|Yes! Maintain devices, report bugs or improve the code. Visit our GitHub to get started." | split: "|" %}
+    {% for i in (0..4) %}{% assign q = i | times: 2 %}{% assign a = q | plus: 1 %}
+    <details class="group py-5">
+      <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-fg">{{ faq[q] }}<i class="fas fa-plus text-sm text-muted transition-transform group-open:rotate-45"></i></summary>
+      <p class="mt-3 text-muted leading-relaxed max-w-2xl">{{ faq[a] }}</p>
+    </details>
+    {% endfor %}
   </div>
 </section>
 
-<!-- Scripts -->
 <script>
-  // FAQ Toggle Logic
-  function toggleFaq(btn) {
-    const answer = btn.nextElementSibling;
-    const icon = btn.querySelector('.fa-plus');
-    
-    if (answer.classList.contains('hidden')) {
-      answer.classList.remove('hidden');
-      icon.style.transform = 'rotate(45deg)';
-    } else {
-      answer.classList.add('hidden');
-      icon.style.transform = 'rotate(0deg)';
+  (() => {
+    const items = [...document.querySelectorAll('.device-item')], chips = [...document.querySelectorAll('.chip')];
+    const input = document.getElementById('device-search'), count = document.getElementById('dev-count'), empty = document.getElementById('no-results');
+    let oem = '';
+    function apply() {
+      const q = input.value.trim().toLowerCase(); let n = 0;
+      items.forEach(el => { const ok = (!oem || el.dataset.oem === oem) && (!q || el.dataset.q.includes(q)); el.classList.toggle('hidden', !ok); if (ok) n++; });
+      count.textContent = n; empty.classList.toggle('hidden', n > 0);
     }
-  }
-
-  // Device Toggle Logic
-  function toggleOem(btn) {
-    const list = btn.nextElementSibling;
-    const icon = btn.querySelector('.fa-chevron-down');
-    
-    if (list.classList.contains('hidden')) {
-      list.classList.remove('hidden');
-      list.classList.add('grid');
-      icon.style.transform = 'rotate(180deg)';
-    } else {
-      list.classList.add('hidden');
-      list.classList.remove('grid');
-      icon.style.transform = 'rotate(0deg)';
-    }
-  }
-
-  // Device Filter Logic
-  function filterDevices() {
-    const query = document.getElementById('device-search').value.toLowerCase();
-    const sections = document.querySelectorAll('.oem-section');
-    let totalVisible = 0;
-
-    sections.forEach(section => {
-      const items = section.querySelectorAll('.device-item');
-      let hasMatch = false;
-      let sectionTitle = section.querySelector('.oem-toggle span').innerText.toLowerCase();
-
-      // Check if section title matches (e.g. searching "Xiaomi")
-      const titleMatch = sectionTitle.includes(query);
-
-      items.forEach(item => {
-        const title = item.dataset.title;
-        const code = item.dataset.codename;
-        
-        if (title.includes(query) || code.includes(query) || titleMatch) {
-          item.classList.remove('hidden');
-          item.classList.add('flex');
-          hasMatch = true;
-          totalVisible++;
-        } else {
-          item.classList.add('hidden');
-          item.classList.remove('flex');
-        }
-      });
-
-      if (hasMatch) {
-        section.classList.remove('hidden');
-        // Auto expand if searching
-        if (query.length > 0) {
-          const list = section.querySelector('.device-list');
-          const icon = section.querySelector('.fa-chevron-down');
-          list.classList.remove('hidden');
-          list.classList.add('grid');
-          icon.style.transform = 'rotate(180deg)';
-        }
-      } else {
-        section.classList.add('hidden');
-      }
-    });
-
-    const noRes = document.getElementById('no-results');
-    if (totalVisible === 0) noRes.classList.remove('hidden');
-    else noRes.classList.add('hidden');
-  }
+    input.addEventListener('input', apply);
+    chips.forEach(c => c.addEventListener('click', () => { oem = c.dataset.oem; chips.forEach(x => x.setAttribute('aria-pressed', x === c)); apply(); }));
+  })();
 </script>
